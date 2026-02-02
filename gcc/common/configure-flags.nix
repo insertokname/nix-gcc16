@@ -195,6 +195,8 @@ let
       # expectations.
       "--program-prefix=${targetPrefix}"
 
+      "--disable-checking"
+
       (lib.enableFeature enableLTO "lto")
       "--disable-libstdcxx-pch"
       "--without-included-gettext"
@@ -215,6 +217,7 @@ let
           ]
           ++ lib.optional langJit "jit"
           ++ lib.optional langRust "rust"
+          ++ ["algol68"]
         )
       }"
     ]

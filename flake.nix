@@ -23,7 +23,7 @@
           pkgs = nixpkgs.legacyPackages.${system};
         in
         {
-          packages.default = (pkgs.callPackage ./gcc/all.nix { noSysDirs = true; }).gcc16;
+          packages.default = (pkgs.callPackage ./gcc/all.nix { noSysDirs = false; }).gcc16;
         }
       );
 }
