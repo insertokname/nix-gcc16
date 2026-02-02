@@ -9,21 +9,13 @@
       nixpkgs,
       flake-utils,
     }:
-    flake-utils.lib.eachSystem
-      [
-        "x86_64-linux"
-        "i686-linux"
-        "aarch64-linux"
-        "aarch64-darwin"
-        "x86_64-darwin"
-      ]
-      (
-        system:
-        let
-          pkgs = nixpkgs.legacyPackages.${system};
-        in
-        {
-          packages.default = (pkgs.callPackage ./gcc/all.nix { noSysDirs = false; }).gcc16;
-        }
-      );
+    flake-utils.lib.eachDefaultSystem (
+      system:
+      let
+        pkgs = nixpkgs.legacyPackages.${system};
+      in
+      {
+        packages.default = (pkgs.callPackage ./gcc/all.nix { noSysDirs = false; }).gcc16;
+      }
+    );
 }
